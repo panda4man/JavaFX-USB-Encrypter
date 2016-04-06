@@ -1,13 +1,14 @@
 package com.serenitynow;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Andrew on 4/6/16.
  */
 public class Device {
-    private long mSize; //in KB
-    private long mFreeSpace;
-    private long mUsableSpace;
-    private long mTotalSpace;
+    private double mFreeSpace;
+    private double mUsableSpace;
+    private double mTotalSpace;
     private String mName;
     private String mPath;
 
@@ -15,44 +16,28 @@ public class Device {
 
     }
 
-    public long getSize() {
-        return mSize;
-    }
-
-    public void setSize(long size) {
-        mSize = size;
-    }
-
-    public long getFreeSpace() {
+    public double getFreeSpace() {
         return mFreeSpace;
     }
 
     public void setFreeSpace(long freeSpace) {
-        mFreeSpace = freeSpace;
+        mFreeSpace = (double)freeSpace*1.0;
     }
 
-    public long getUsableSpace() {
+    public double getUsableSpace() {
         return mUsableSpace;
     }
 
     public void setUsableSpace(long usableSpace) {
-        mUsableSpace = usableSpace;
+        mUsableSpace = (double)usableSpace*1.0;
     }
 
-    public long getTotalSpace() {
+    public double getTotalSpace() {
         return mTotalSpace;
     }
 
     public void setTotalSpace(long totalSpace) {
-        mTotalSpace = totalSpace;
-    }
-
-    public long getSizeInMb() {
-        return mSize / 1024;
-    }
-
-    public long getSizeInGb() {
-        return getSizeInMb() / 1024;
+        mTotalSpace = (double)totalSpace*1.0;
     }
 
     public String getName() {
@@ -72,6 +57,17 @@ public class Device {
     }
 
     public void printInfo(){
-        System.out.println("Name: " + this.mName + " size: " + this.mSize + " path: " + this.mPath);
+        System.out.println("Name: " + this.mName + " size: " + Device.formatNumber(this.getTotalSpace(), "GB") + " path: " + this.mPath);
+    }
+
+    public static String formatNumber(double num, String format){
+        if(format.equals("KB")){
+            return num / 1024.0 + " " + format;
+        } else if (format.equals("MB")) {
+            return num / 1048576.0 + " " + format;
+        } else if (format.equals("GB")) {
+            return num / 1073741824.0 + " " + format;
+        }
+        return num + " B";
     }
 }
