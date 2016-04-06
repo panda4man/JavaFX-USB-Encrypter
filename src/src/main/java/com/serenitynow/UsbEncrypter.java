@@ -1,6 +1,10 @@
 package com.serenitynow;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+
+import javax.swing.filechooser.FileSystemView;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -16,6 +20,7 @@ public class UsbEncrypter extends Application{
 
     Stage mWindow;
     Scene mScene1, mScene2;
+    private DeviceHandler mDeviceHandler;
 
     public static void main(String[] args){
         launch(args);
@@ -24,6 +29,8 @@ public class UsbEncrypter extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        mDeviceHandler = DeviceHandler.getInstance();
+
         mWindow = primaryStage;
 
         Label label1 = new Label("Welcome to the first scene");
@@ -51,13 +58,11 @@ public class UsbEncrypter extends Application{
         mWindow.setTitle("Hallo");
         mWindow.show();
 
-        listDrives();
+        grabDevices();
 
     }
 
-    private void listDrives() {
-        File[] roots = File.listRoots();
-        for(int i = 0; i < roots.length ; i++)
-            System.out.println("Root["+i+"]:" + roots[i]);
+    private void grabDevices() {
+        mDeviceHandler.listDevices();
     }
 }
