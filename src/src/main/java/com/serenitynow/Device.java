@@ -4,30 +4,55 @@ package com.serenitynow;
  * Created by Andrew on 4/6/16.
  */
 public class Device {
-    private double mSize; //in KB
+    private long mSize; //in KB
+    private long mFreeSpace;
+    private long mUsableSpace;
+    private long mTotalSpace;
     private String mName;
     private String mPath;
 
-    public Device(double size, String name, String path){
-        this.mSize = size;
-        this.mName = name;
-        this.mPath = path;
+    public Device() {
+
     }
 
-    public double getSize() {
+    public long getSize() {
         return mSize;
     }
 
-    public double getSizeInMb() {
-        return mSize / 1024.0;
-    }
-
-    public double getSizeInGb() {
-        return getSizeInMb() / 1024.0;
-    }
-
-    public void setSize(double size) {
+    public void setSize(long size) {
         mSize = size;
+    }
+
+    public long getFreeSpace() {
+        return mFreeSpace;
+    }
+
+    public void setFreeSpace(long freeSpace) {
+        mFreeSpace = freeSpace;
+    }
+
+    public long getUsableSpace() {
+        return mUsableSpace;
+    }
+
+    public void setUsableSpace(long usableSpace) {
+        mUsableSpace = usableSpace;
+    }
+
+    public long getTotalSpace() {
+        return mTotalSpace;
+    }
+
+    public void setTotalSpace(long totalSpace) {
+        mTotalSpace = totalSpace;
+    }
+
+    public long getSizeInMb() {
+        return mSize / 1024;
+    }
+
+    public long getSizeInGb() {
+        return getSizeInMb() / 1024;
     }
 
     public String getName() {
@@ -44,5 +69,9 @@ public class Device {
 
     public void setPath(String path) {
         mPath = path;
+    }
+
+    public void printInfo(){
+        System.out.println("Name: " + this.mName + " size: " + this.mSize + " path: " + this.mPath);
     }
 }

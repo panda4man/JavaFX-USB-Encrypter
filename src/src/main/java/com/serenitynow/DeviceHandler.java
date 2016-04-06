@@ -1,7 +1,6 @@
 package com.serenitynow;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -48,20 +47,27 @@ public class DeviceHandler {
     }
 
     private void getDevicesMac(ArrayList<Device> device_list){
-        System.out.println(DeviceHandler.OsUtils.getOsName());
-        System.out.println(DeviceHandler.OsUtils.isMac());
-        String[] cmd = {"diskutil", "list"};
-        String line = "";
-        try {
-            Process p = Runtime.getRuntime().exec(cmd);
-            BufferedReader input =
-                    new BufferedReader(new InputStreamReader(p.getInputStream()));
-            while ((line = input.readLine()) != null) {
-                System.out.println(line);
-            }
-            input.close();
-        } catch (Exception e){
-            e.printStackTrace();
+        ArrayList<Device> devices = new ArrayList<Device>();
+
+        File volumes = new File("/Volumes");
+        File files[] = volumes.listFiles();
+        for(File f: files){
+            String name = f.getName();
+            String path = f.getAbsolutePath();
+            long freeSpace = f.getFreeSpace();
+            long usableSpace = f.getUsableSpace();
+            long totalSpace = f.getTotalSpace();
+
+            Device d = new Device();
+            d.setName(name);
+            d.setPath(path);
+            d.setFreeSpace(freeSpace);
+            d.setTotalSpace(totalSpace);
+            d.setUsableSpace(usableSpace);
+
+            devices.add(d);
+
+            d.printInfo();
         }
     }
 
