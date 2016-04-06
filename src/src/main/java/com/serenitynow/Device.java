@@ -4,21 +4,29 @@ package com.serenitynow;
  * Created by Andrew on 4/6/16.
  */
 public class Device {
-    private int mSize; //in KB
+    private double mSize; //in KB
     private String mName;
     private String mPath;
 
-    public Device(int size, String name, String path){
+    public Device(double size, String name, String path){
         this.mSize = size;
         this.mName = name;
         this.mPath = path;
     }
 
-    public int getSize() {
+    public double getSize() {
         return mSize;
     }
 
-    public void setSize(int size) {
+    public double getSizeInMb() {
+        return mSize / 1024.0;
+    }
+
+    public double getSizeInGb() {
+        return getSizeInMb() / 1024.0;
+    }
+
+    public void setSize(double size) {
         mSize = size;
     }
 
