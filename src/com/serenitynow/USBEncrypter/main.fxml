@@ -45,9 +45,9 @@
       </VBox>
    </top>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" style="-fx-background-color: #f7f7f7;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets top="8.0" />
+            <Insets />
          </BorderPane.margin>
          <padding>
             <Insets left="4.0" right="4.0" />
@@ -57,6 +57,9 @@
                <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Refresh" HBox.hgrow="ALWAYS" />
                </children>
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin>
             </HBox>
             <VBox spacing="4.0">
                <children>
@@ -76,7 +79,7 @@
       </VBox>
    </left>
    <bottom>
-      <HBox BorderPane.alignment="CENTER">
+      <HBox style="-fx-background-color: #f1f1f1;" BorderPane.alignment="CENTER">
          <children>
             <Label text="Footer stuffs" />
          </children>
@@ -86,17 +89,20 @@
       </HBox>
    </bottom>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f7f7f7;" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Right side bar" />
+            <Label text="Right side bar">
+               <VBox.margin>
+                  <Insets top="8.0" />
+               </VBox.margin></Label>
          </children>
          <BorderPane.margin>
-            <Insets top="8.0" />
+            <Insets />
          </BorderPane.margin>
       </VBox>
    </right>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="What would you like to do?" textAlignment="CENTER">
                <VBox.margin>

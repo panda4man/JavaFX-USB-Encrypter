@@ -10,19 +10,18 @@ public class Main extends Application {
     Stage mWindow;
     private DeviceHandler mDeviceHandler;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         mDeviceHandler = DeviceHandler.getInstance();
         mWindow = primaryStage;
 
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
-        mWindow.setTitle("Hello World");
+        mWindow.setTitle("Super Secure USB Encrypting");
         mWindow.setScene(new Scene(root, 600, 400));
         mWindow.show();
-    }
-
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
