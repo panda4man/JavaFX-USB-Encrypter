@@ -47,8 +47,6 @@ public class DeviceHandler {
     }
 
     private void getDevicesMac(ArrayList<Device> device_list){
-        ArrayList<Device> devices = new ArrayList<Device>();
-
         File volumes = new File("/Volumes");
         File files[] = volumes.listFiles();
         for(File f: files){
@@ -65,9 +63,7 @@ public class DeviceHandler {
             d.setTotalSpace(totalSpace);
             d.setUsableSpace(usableSpace);
 
-            devices.add(d);
-
-            d.printInfo();
+            device_list.add(d);
         }
     }
 

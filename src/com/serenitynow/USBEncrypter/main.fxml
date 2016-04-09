@@ -49,32 +49,16 @@
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
-         <padding>
-            <Insets left="4.0" right="4.0" />
-         </padding>
          <children>
             <HBox alignment="TOP_CENTER">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Refresh" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="refresh" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Refresh" HBox.hgrow="ALWAYS" />
                </children>
                <VBox.margin>
                   <Insets top="8.0" />
                </VBox.margin>
             </HBox>
-            <VBox spacing="4.0">
-               <children>
-                  <Label text="Drive Name" />
-                  <Label text="Drive Size" />
-                  <Label text="Drive Path" />
-               </children>
-            </VBox>
-            <VBox spacing="4.0">
-               <children>
-                  <Label text="Label" />
-                  <Label text="Label" />
-                  <Label text="Label" />
-               </children>
-            </VBox>
+            <ListView fx:id="deviceListView" minHeight="-Infinity" minWidth="130.0" prefHeight="295.0" prefWidth="130.0" />
          </children>
       </VBox>
    </left>
@@ -102,16 +86,108 @@
       </VBox>
    </right>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <VBox minHeight="-Infinity" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="What would you like to do?" textAlignment="CENTER">
+            <Label fx:id="selectedDrive" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="No Drive Selected" textAlignment="CENTER">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="deviceFreeSpace" alignment="CENTER" maxWidth="1.7976931348623157E308" GridPane.rowIndex="1" />
+                  <Label fx:id="deviceUsedSpace" alignment="CENTER" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="deviceTotalSpace" alignment="CENTER" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Free Space">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Used Space" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold Italic" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Total Space" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </GridPane>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets left="8.0" right="8.0" />
+               </VBox.margin>
+            </Separator>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="Password:">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField promptText="Required" />
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <GridPane alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" style="-fx-background-color: #6666ff; -fx-text-fill: white;" text="Encrypt">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="110.0" style="-fx-background-color: #00b300; -fx-text-fill: white;" text="Decrypt" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </GridPane>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Processing:">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ProgressBar maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="0.0">
+               <VBox.margin>
+                  <Insets left="8.0" right="8.0" top="10.0" />
+               </VBox.margin>
+            </ProgressBar>
          </children>
       </VBox>
    </center>

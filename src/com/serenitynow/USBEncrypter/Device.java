@@ -1,6 +1,7 @@
 package com.serenitynow.USBEncrypter;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 /**
  * Created by Andrew on 4/6/16.
@@ -62,12 +63,12 @@ public class Device {
 
     public static String formatNumber(double num, String format){
         if(format.equals("KB")){
-            return num / 1024.0 + " " + format;
+            return String.format("%1.2f", num / 1024.0) + " " + format;
         } else if (format.equals("MB")) {
-            return num / 1048576.0 + " " + format;
+            return String.format("%1.2f", num / 1048576.0) + " " + format;
         } else if (format.equals("GB")) {
-            return num / 1073741824.0 + " " + format;
+            return String.format("%1.2f", num / 1073741824.0) + " " + format;
         }
-        return num + " B";
+        return String.format("%1.2f", num) + " B";
     }
 }
