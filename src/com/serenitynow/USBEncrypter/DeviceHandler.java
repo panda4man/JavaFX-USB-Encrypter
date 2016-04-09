@@ -67,10 +67,12 @@ public class DeviceHandler {
         }
     }
 
+    //TODO: For Jordan
     private void getDevicesWindows(ArrayList<Device> device_list){
 
     }
 
+    //TODO: For Jordan
     private void getDevicesUnix(ArrayList<Device> device_list){
 
     }
