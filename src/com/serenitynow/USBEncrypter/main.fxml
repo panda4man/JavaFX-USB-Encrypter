@@ -58,7 +58,7 @@
                   <Insets top="8.0" />
                </VBox.margin>
             </HBox>
-            <ListView fx:id="deviceListView" minHeight="-Infinity" minWidth="130.0" prefHeight="295.0" prefWidth="130.0" />
+            <ListView fx:id="deviceListView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="295.0" prefWidth="115.0" />
          </children>
       </VBox>
    </left>
@@ -142,7 +142,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField promptText="Required" />
+                  <TextField fx:id="password" promptText="Required" />
                </children>
                <VBox.margin>
                   <Insets top="10.0" />
@@ -160,12 +160,12 @@
                   <Insets top="15.0" />
                </VBox.margin>
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" style="-fx-background-color: #6666ff; -fx-text-fill: white;" text="Encrypt">
+                  <Button fx:id="encrypt" alignment="CENTER" mnemonicParsing="false" prefWidth="110.0" style="-fx-background-color: #6666ff; -fx-text-fill: white;" text="Encrypt">
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
                   </Button>
-                  <Button mnemonicParsing="false" prefWidth="110.0" style="-fx-background-color: #00b300; -fx-text-fill: white;" text="Decrypt" GridPane.columnIndex="1">
+                  <Button fx:id="decrypt" mnemonicParsing="false" prefWidth="110.0" style="-fx-background-color: #00b300; -fx-text-fill: white;" text="Decrypt" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -175,15 +175,27 @@
                   </Button>
                </children>
             </GridPane>
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Processing:">
+            <HBox alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Processing:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="processingFile">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <ProgressBar maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="0.0">
+            </HBox>
+            <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="0.0">
                <VBox.margin>
                   <Insets left="8.0" right="8.0" top="10.0" />
                </VBox.margin>
