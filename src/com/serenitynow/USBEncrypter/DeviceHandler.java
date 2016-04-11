@@ -1,5 +1,6 @@
 package com.serenitynow.USBEncrypter;
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -67,14 +68,46 @@ public class DeviceHandler {
         }
     }
 
-    //TODO: For Jordan
     private void getDevicesWindows(ArrayList<Device> device_list){
+        File files[] = File.listRoots();
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        for(File f: files){
+            String name = fsv.getSystemTypeDescription(f);
+            String path = f.getAbsolutePath();
+            long freeSpace = f.getFreeSpace();
+            long usableSpace = f.getUsableSpace();
+            long totalSpace = f.getTotalSpace();
 
+            Device d = new Device();
+            d.setName(name);
+            d.setPath(path);
+            d.setFreeSpace(freeSpace);
+            d.setUsableSpace(usableSpace);
+            d.setTotalSpace(totalSpace);
+
+            device_list.add(d);
+        }
     }
 
-    //TODO: For Jordan
     private void getDevicesUnix(ArrayList<Device> device_list){
+        File media = new File("/media");
+        File files[] = media.listFiles();
+        for(File f: files){
+            String name = f.getName();
+            String path = f.getAbsolutePath();
+            long freeSpace = f.getFreeSpace();
+            long usableSpace = f.getUsableSpace();
+            long totalSpace = f.getTotalSpace();
 
+            Device d = new Device();
+            d.setName(name);
+            d.setPath(path);
+            d.setFreeSpace(freeSpace);
+            d.setTotalSpace(totalSpace);
+            d.setUsableSpace(usableSpace);
+
+            device_list.add(d);
+        }
     }
 
     /**
