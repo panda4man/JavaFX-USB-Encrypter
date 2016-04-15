@@ -65,7 +65,7 @@
    <bottom>
       <HBox style="-fx-background-color: #f1f1f1;" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Footer stuffs" />
+            <Label text="2016 Clinton Clinton Clinton Clinton &amp; Clinton" />
          </children>
          <padding>
             <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -75,14 +75,21 @@
    <right>
       <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f7f7f7;" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Right side bar">
+            <Label text="Log">
                <VBox.margin>
                   <Insets top="8.0" />
-               </VBox.margin></Label>
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font></Label>
+            <VBox fx:id="processFinishedLog" prefHeight="200.0" prefWidth="100.0" />
          </children>
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
+         <padding>
+            <Insets left="4.0" right="4.0" />
+         </padding>
       </VBox>
    </right>
    <center>
@@ -175,31 +182,14 @@
                   </Button>
                </children>
             </GridPane>
-            <HBox alignment="CENTER">
+            <VBox maxHeight="-Infinity" prefHeight="110.0" prefWidth="369.0">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Processing:">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="processingFile">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
+                  <TextArea fx:id="processOutput" editable="false" />
                </children>
                <VBox.margin>
-                  <Insets top="15.0" />
+                  <Insets left="8.0" right="8.0" top="16.0" />
                </VBox.margin>
-            </HBox>
-            <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" prefWidth="200.0" progress="0.0">
-               <VBox.margin>
-                  <Insets left="8.0" right="8.0" top="10.0" />
-               </VBox.margin>
-            </ProgressBar>
+            </VBox>
          </children>
       </VBox>
    </center>

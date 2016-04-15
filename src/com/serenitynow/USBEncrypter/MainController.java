@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,10 +45,10 @@ public class MainController implements Initializable{
     private TextField password;
 
     @FXML
-    private ProgressBar progressBar;
+    private TextArea processOutput;
 
     @FXML
-    private Label processingFile;
+    private VBox processFinishedLog;
 
     private DeviceHandler mDeviceHandler;
     private ArrayList<Device> mDeviceArrayList;
@@ -81,27 +82,16 @@ public class MainController implements Initializable{
 
         //When user clicks this button refresh the drive list
         refresh.setOnAction((ActionEvent event) -> {
-            //
-            setSelectedContent(null);
-
-            mDeviceArrayList = mDeviceHandler.listDevices();
-            ArrayList<String> mDeviceNames = new ArrayList<String>();
-            for(Device d : mDeviceArrayList){
-                mDeviceNames.add(d.getName());
-            }
-
-            //clear the list
-            deviceListView.getItems().clear();
-
-            //readd the devices
-            deviceListView.getItems().addAll(mDeviceNames);
+            refreshDevices();
         });
 
         //Encrypt button listener
         encrypt.setOnAction((ActionEvent action) -> {
             if(password.getText().length() > 0){
                 EncryptionService ES = new EncryptionService();
-                ES.process(mDevice.getPath(), password.getText().toString(), true, progressBar, processingFile);
+                ES.process(mDevice.getPath(), password.getText().toString(), "0", processOutput);
+                Label l = new Label("Encrypted");
+                processFinishedLog.getChildren().addAll(l);
             } else {
                 //Show pop up error
                 Alert alert = new Alert(Alert.AlertType.ERROR, "You must supply a password first.", ButtonType.CANCEL);
@@ -113,7 +103,9 @@ public class MainController implements Initializable{
         decrypt.setOnAction((ActionEvent action) -> {
             if(password.getText().length() > 0){
                 EncryptionService ES = new EncryptionService();
-                ES.process(mDevice.getPath(), password.getText().toString(), false, progressBar, processingFile);
+                ES.process(mDevice.getPath(), password.getText().toString(), "1", processOutput);
+                Label l = new Label("Decrypted");
+                processFinishedLog.getChildren().addAll(l);
             } else {
                 //Show pop up error
                 Alert alert = new Alert(Alert.AlertType.ERROR, "You must supply a password first.", ButtonType.CANCEL);
@@ -136,6 +128,8 @@ public class MainController implements Initializable{
                 }
             }
         });
+
+        refreshDevices();
     }
 
     private void setSelectedContent(Device selectedDevice){
@@ -157,5 +151,22 @@ public class MainController implements Initializable{
         encrypt.setDisable(disable);
         decrypt.setDisable(disable);
         password.setDisable(disable);
+    }
+
+    private void refreshDevices() {
+        //
+        setSelectedContent(null);
+
+        mDeviceArrayList = mDeviceHandler.listDevices();
+        ArrayList<String> mDeviceNames = new ArrayList<String>();
+        for(Device d : mDeviceArrayList){
+            mDeviceNames.add(d.getName());
+        }
+
+        //clear the list
+        deviceListView.getItems().clear();
+
+        //readd the devices
+        deviceListView.getItems().addAll(mDeviceNames);
     }
 }
