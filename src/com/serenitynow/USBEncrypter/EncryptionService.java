@@ -53,8 +53,6 @@ public class EncryptionService {
     }
 
     private ProcessBuilder buildCommand(String path, String password, String encrypt){
-        String new_path = this.getClass().getResource("/Darwin_poc_newer.bin").getPath();
-        new_path = fixPath(new_path);
         return new ProcessBuilder("/Users/Andrew/Desktop/binaries1.5/binaries/Darwin_poc_1-3.7.bin", path, encrypt, password);
     }
 
